@@ -1,0 +1,77 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <math.h>
+#include <stdlib.h>
+using namespace std;
+
+char inlet;
+bool regreso = false;
+
+void dicc(void)
+{
+     double max;
+     int cif;
+     int num = 0;
+     
+     ofstream fs("dicc.txt");
+     
+     switch(inlet)
+     {
+           case 'a':
+                system("cls");
+                cout << "============================\nGenerar Diccionario Numerico\n============================\nNota : El archivo se llama Dicc y se guardara en esta misma carpeta\n============================" << endl;
+                cout << "Ingresar Logitud de Diccionario" << endl;
+                
+                cin >> cif;
+                
+                if(cif != 0)
+                {
+                       max = pow(10, cif);
+                }   
+                
+                cout << "============================\nNumero Maximo Generado : " << max << "\n============================" << endl;
+                
+                while(num <= max && cif != 0)
+                {
+                      num++;
+                      fs << setfill('0') << setw(cif) << num << endl;
+                }
+    
+                if(num != max)
+                {
+                       cout << "============================\nDiccionario Generado con exito XD\n============================" << endl;
+                }    
+    
+                regreso = false;
+             break;  
+         default:
+                 system("cls");
+                 cout << "=======================\nEleccion invalida\nInsertaste : " << inlet <<"\n=======================" << endl;
+                 regreso = true;
+           break;                
+     }    
+     fs.close();   
+}
+
+void menu(void)
+{
+     
+     cout << "=======================\n   AlfaGenerador 1.0\n=======================" << endl;
+     cout << "a.= Generar diccionario Numerico" << endl;
+     
+     cin >> inlet;
+     dicc();
+}     
+
+
+int main()
+{
+    
+   do
+   {
+          menu();
+   }while(regreso == true);
+   
+ system("pause");   
+}
